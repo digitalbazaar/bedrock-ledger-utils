@@ -1,0 +1,25 @@
+{
+  "name": "bedrock-ledger-utils",
+  "version": "0.0.1-0",
+  "description": "Bedrock ledger utilities.",
+  "main": "lib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalbazaar/bedrock-ledger-utils.git"
+  },
+  "author": {
+    "name": "Digital Bazaar, Inc.",
+    "email": "support@digitalbazaar.com",
+    "url": "http://digitalbazaar.com"
+  },
+  "bugs": {
+    "url": "https://github.com/digitalbazaar/bedrock-ledger-utils/issues"
+  },
+  "homepage": "https://github.com/digitalbazaar/bedrock-ledger-utils",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "peerDependencies": {
+    "bedrock": "^1.13.0"
+  }
+}
