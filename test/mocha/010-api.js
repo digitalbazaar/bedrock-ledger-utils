@@ -18,7 +18,7 @@ describe('Elector Selection APIs', () => {
         {ledgerConfiguration, ledgerNode});
       expect(r).to.eql({});
     });
-    describe('Dereferenced service descriptions', () => {
+    describe('Dereferenced service descriptors', () => {
       it('extracts one elector from an electorPool document', async function() {
         this.timeout(60000);
         const electorCount = 1;
@@ -53,8 +53,8 @@ describe('Elector Selection APIs', () => {
         Object.values(r).map(e => e.id).should.have.same.members(
           mockData.endpoint.slice(0, electorCount));
       });
-    }); // end Dereferenced service descriptions
-    describe('Dereferenced service descriptions', () => {
+    }); // end Dereferenced service descriptors
+    describe('Embedded service descriptors', () => {
       it('extracts one elector from an electorPool document', async function() {
         this.timeout(60000);
         const electorCount = 0;
@@ -91,9 +91,9 @@ describe('Elector Selection APIs', () => {
         Object.values(r).map(e => e.id).should.have.same.members(
           mockData.endpoint.slice(0, embeddedServiceCount + electorCount));
       });
-    }); // end Dereferenced service descriptions
+    }); // end Embedded service descriptors
 
-    describe('Mixed dereferenced/embedded service descriptions', () => {
+    describe('Mixed dereferenced/embedded service descriptors', () => {
       it('one dereferenced and one embedded', async function() {
         this.timeout(60000);
         const electorCount = 1;
@@ -148,6 +148,6 @@ describe('Elector Selection APIs', () => {
         Object.values(r).map(e => e.id).should.have.same.members(
           mockData.endpoint.slice(0, embeddedServiceCount + electorCount));
       });
-    }); // Mixed dereferenced/embedded service descriptions
+    }); // Mixed dereferenced/embedded service descriptors
   });
 });
