@@ -17,3 +17,6 @@ config.mongodb.dropCollections.collections = [];
 
 // ensure that consensus workers are disabled
 config.ledger.jobs.scheduleConsensusWork.enabled = false;
+
+// Set mode to 'test', so that DIDs are created as 'did:v1:test:...' in tests
+config['veres-one-validator'].environment = 'test';

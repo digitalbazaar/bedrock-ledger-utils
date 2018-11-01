@@ -28,13 +28,11 @@ api.initializeLedger = async (
   const electors = [];
   for(let i = 0; i < electorCount; ++i) {
     const electorDidDocumentFull = await v1.generate();
-    const {doc: electorDidDocument} = electorDidDocumentFull;
-    const electorServiceId = `urn:uuid:${uuid()}`;
-    electorDidDocument.service = [{
-      id: electorServiceId,
+    electorDidDocumentFull.addService({
+      endpoint: mockData.endpoint[i],
+      name: api.continuityServiceType,
       type: api.continuityServiceType,
-      serviceEndpoint: mockData.endpoint[i],
-    }];
+    });
     electors.push(electorDidDocumentFull);
   }
 
@@ -66,7 +64,8 @@ api.initializeLedger = async (
     const electorDocument = bedrock.util.clone(mockData.electorDocument.alpha);
     // elector DIDs are not used with embedded services descriptors
     const electorDid = `did:v1:test:uuid:${uuid()}`;
-    const electorServiceId = `urn:uuid:${uuid()}`;
+    // FIXME: did URI for service id?
+    const electorServiceId = `${electorDid};service=MyServiceId`;
     electorDocument.elector = electorDid;
     electorDocument.service = {
       id: electorServiceId,
