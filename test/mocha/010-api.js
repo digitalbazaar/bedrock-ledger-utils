@@ -19,7 +19,7 @@ describe('Elector Selection APIs', () => {
       expect(r).to.eql({});
     });
     describe('Dereferenced service descriptors', () => {
-      it('extracts one elector from an electorPool document', async function() {
+      it.only('extracts one elector from an electorPool document', async function() {
         this.timeout(60000);
         const electorCount = 1;
         try {
@@ -30,12 +30,18 @@ describe('Elector Selection APIs', () => {
           assertNoError(err);
         }
         const ledgerConfiguration = mockData.ledgerConfiguration.beta;
-        const r = await brLedgerUtils.getElectorPoolElectors(
+        const {
+          electorPoolDocumentSequence, electorPoolElectors, maximumElectorCount
+        } = await brLedgerUtils.getElectorPoolElectors(
           {ledgerConfiguration, ledgerNode});
-        Object.keys(r).should.have.same.members(
+        Object.keys(electorPoolElectors).should.have.same.members(
           electorPoolDocument.electorPool.map(e => e.elector));
-        Object.values(r).map(e => e.id).should.have.same.members(
-          mockData.endpoint.slice(0, electorCount));
+        Object.values(electorPoolElectors).map(e => e.id).should.have.same
+          .members(mockData.endpoint.slice(0, electorCount));
+        should.exist(maximumElectorCount);
+        maximumElectorCount.should.equal(1);
+        should.exist(electorPoolDocumentSequence);
+        electorPoolDocumentSequence.should.equal(0);
       });
       it('extracts three electors from an electorPool doc', async function() {
         this.timeout(60000);

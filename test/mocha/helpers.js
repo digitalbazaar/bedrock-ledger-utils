@@ -82,6 +82,8 @@ api.initializeLedger = async (
     electorDocument.capability[0].invocationTarget = ledgerNode.ledger;
     electorPoolDocument.electorPool.push(electorDocument);
   }
+  electorPoolDocument.maximumElectorCount = electorCount +
+    embeddedServiceCount;
   electorPoolDocument.invoker = maintainerDid;
 
   // add a DID document for a mock maintainer and wait for consensus

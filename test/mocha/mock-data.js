@@ -16,8 +16,7 @@ electorDocument.alpha = {
   id: 'urn:uuid:89a62413-0ada-461b-b672-1b28afefaca8',
   elector: 'did:v1:nym:50f28192-8f52-4bf2-a9b1-d203f6611456',
   service: 'urn:uuid:50f28192-8f52-4bf2-a9b1-d203f6611456',
-
-  // FIXME: is `type` allowed/required here?
+  type: ['Continuity2017Elector'],
 
   // other restrictions/capabilities like guarantor, recovery,
   // or ocap w/ticket caveat
@@ -41,7 +40,9 @@ electorPoolDocument.alpha = {
   // veresOneTicketRate: 10, /* TBD */
 
   invoker: '', // replaced with DID in test
-  electorPool: []
+  // this is updated in tests
+  electorPool: [],
+  maximumElectorCount: 0,
 };
 
 const endpoint = api.endpoint = [];
