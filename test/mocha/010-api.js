@@ -19,7 +19,7 @@ describe('Elector Selection APIs', () => {
       expect(r).to.eql({});
     });
     describe('Dereferenced service descriptors', () => {
-      it.only('extracts one elector from an electorPool document', async function() {
+      it('extracts one elector from an electorPool document', async function() {
         this.timeout(60000);
         const electorCount = 1;
         try {
@@ -54,10 +54,16 @@ describe('Elector Selection APIs', () => {
           assertNoError(err);
         }
         const ledgerConfiguration = mockData.ledgerConfiguration.beta;
-        const r = await brLedgerUtils.getElectorPoolElectors(
+        const {
+          electorPoolDocumentSequence, electorPoolElectors, maximumElectorCount
+        } = await brLedgerUtils.getElectorPoolElectors(
           {ledgerConfiguration, ledgerNode});
-        Object.values(r).map(e => e.id).should.have.same.members(
-          mockData.endpoint.slice(0, electorCount));
+        Object.values(electorPoolElectors).map(e => e.id).should.have.same
+          .members(mockData.endpoint.slice(0, electorCount));
+        should.exist(electorPoolDocumentSequence);
+        electorPoolDocumentSequence.should.equal(0);
+        should.exist(maximumElectorCount);
+        maximumElectorCount.should.equal(3);
       });
     }); // end Dereferenced service descriptors
     describe('Embedded service descriptors', () => {
@@ -74,10 +80,17 @@ describe('Elector Selection APIs', () => {
           assertNoError(err);
         }
         const ledgerConfiguration = mockData.ledgerConfiguration.beta;
-        const r = await brLedgerUtils.getElectorPoolElectors(
+        const {
+          electorPoolDocumentSequence, electorPoolElectors, maximumElectorCount
+        } = await brLedgerUtils.getElectorPoolElectors(
           {ledgerConfiguration, ledgerNode});
-        Object.values(r).map(e => e.id).should.have.same.members(
-          mockData.endpoint.slice(0, embeddedServiceCount + electorCount));
+        Object.values(electorPoolElectors).map(e => e.id).should.have.same
+          .members(mockData.endpoint.slice(
+            0, embeddedServiceCount + electorCount));
+        should.exist(electorPoolDocumentSequence);
+        electorPoolDocumentSequence.should.equal(0);
+        should.exist(maximumElectorCount);
+        maximumElectorCount.should.equal(1);
       });
       it('extracts three electors from an electorPool doc', async function() {
         this.timeout(60000);
@@ -92,10 +105,17 @@ describe('Elector Selection APIs', () => {
           assertNoError(err);
         }
         const ledgerConfiguration = mockData.ledgerConfiguration.beta;
-        const r = await brLedgerUtils.getElectorPoolElectors(
+        const {
+          electorPoolDocumentSequence, electorPoolElectors, maximumElectorCount
+        } = await brLedgerUtils.getElectorPoolElectors(
           {ledgerConfiguration, ledgerNode});
-        Object.values(r).map(e => e.id).should.have.same.members(
-          mockData.endpoint.slice(0, embeddedServiceCount + electorCount));
+        Object.values(electorPoolElectors).map(e => e.id).should.have.same
+          .members(mockData.endpoint.slice(
+            0, embeddedServiceCount + electorCount));
+        should.exist(electorPoolDocumentSequence);
+        electorPoolDocumentSequence.should.equal(0);
+        should.exist(maximumElectorCount);
+        maximumElectorCount.should.equal(3);
       });
     }); // end Embedded service descriptors
 
@@ -113,10 +133,17 @@ describe('Elector Selection APIs', () => {
           assertNoError(err);
         }
         const ledgerConfiguration = mockData.ledgerConfiguration.beta;
-        const r = await brLedgerUtils.getElectorPoolElectors(
+        const {
+          electorPoolDocumentSequence, electorPoolElectors, maximumElectorCount
+        } = await brLedgerUtils.getElectorPoolElectors(
           {ledgerConfiguration, ledgerNode});
-        Object.values(r).map(e => e.id).should.have.same.members(
-          mockData.endpoint.slice(0, embeddedServiceCount + electorCount));
+        Object.values(electorPoolElectors).map(e => e.id).should.have.same
+          .members(mockData.endpoint.slice(
+            0, embeddedServiceCount + electorCount));
+        should.exist(electorPoolDocumentSequence);
+        electorPoolDocumentSequence.should.equal(0);
+        should.exist(maximumElectorCount);
+        maximumElectorCount.should.equal(2);
       });
       it('one dereferenced and two embedded', async function() {
         this.timeout(60000);
@@ -131,10 +158,17 @@ describe('Elector Selection APIs', () => {
           assertNoError(err);
         }
         const ledgerConfiguration = mockData.ledgerConfiguration.beta;
-        const r = await brLedgerUtils.getElectorPoolElectors(
+        const {
+          electorPoolDocumentSequence, electorPoolElectors, maximumElectorCount
+        } = await brLedgerUtils.getElectorPoolElectors(
           {ledgerConfiguration, ledgerNode});
-        Object.values(r).map(e => e.id).should.have.same.members(
-          mockData.endpoint.slice(0, embeddedServiceCount + electorCount));
+        Object.values(electorPoolElectors).map(e => e.id).should.have.same
+          .members(mockData.endpoint.slice(
+            0, embeddedServiceCount + electorCount));
+        should.exist(electorPoolDocumentSequence);
+        electorPoolDocumentSequence.should.equal(0);
+        should.exist(maximumElectorCount);
+        maximumElectorCount.should.equal(3);
       });
       it('two dereferenced and one embedded', async function() {
         this.timeout(60000);
@@ -149,11 +183,18 @@ describe('Elector Selection APIs', () => {
           assertNoError(err);
         }
         const ledgerConfiguration = mockData.ledgerConfiguration.beta;
-        const r = await brLedgerUtils.getElectorPoolElectors(
+        const {
+          electorPoolDocumentSequence, electorPoolElectors, maximumElectorCount
+        } = await brLedgerUtils.getElectorPoolElectors(
           {ledgerConfiguration, ledgerNode});
-        Object.values(r).map(e => e.id).should.have.same.members(
-          mockData.endpoint.slice(0, embeddedServiceCount + electorCount));
+        Object.values(electorPoolElectors).map(e => e.id).should.have.same
+          .members(mockData.endpoint.slice(
+            0, embeddedServiceCount + electorCount));
+        should.exist(electorPoolDocumentSequence);
+        electorPoolDocumentSequence.should.equal(0);
+        should.exist(maximumElectorCount);
+        maximumElectorCount.should.equal(3);
       });
-    }); // Mixed dereferenced/embedded service descriptors
+    }); // end Mixed dereferenced/embedded service descriptors
   });
 });
