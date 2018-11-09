@@ -43,7 +43,6 @@ api.initializeLedger = async (
 
   // setup a new ledger
   const ledgerNode = await brLedgerNode.add(null, {ledgerConfiguration});
-  const runWorkers = ledgerNode.consensus._worker._run;
   for(const elector of electors) {
     const electorDocument = bedrock.util.clone(mockData.electorDocument.alpha);
     const {id: electorDid} = elector.doc;
@@ -92,7 +91,7 @@ api.initializeLedger = async (
     {operation, options: {didDocument: maintainerDidDocumentFull}});
   await ledgerNode.operations.add({operation});
   // wait for the new operation to reach consensus
-  await runWorkers(ledgerNode);
+  await _waitForConsensus({ledgerNode, operation});
 
   // add a DID document for a mock electors and wait for it to reach
   // consensus, this allows for the possibility of the veres-one
@@ -105,7 +104,7 @@ api.initializeLedger = async (
     await ledgerNode.operations.add({operation});
   }
   // wait for the new operation to reach consensus
-  await runWorkers(ledgerNode);
+  await _waitForConsensus({ledgerNode, operation});
 
   operation = v1.client.wrap({didDocument: electorPoolDocument});
   const invokePublicKey = maintainerDidDocumentFull.doc
@@ -136,7 +135,7 @@ api.initializeLedger = async (
   // add an electorPool Document
   await ledgerNode.operations.add({operation});
   // wait for the new operation to reach consensus
-  await runWorkers(ledgerNode);
+  await _waitForConsensus({ledgerNode, operation});
 
   return {
     electorPoolDocument,
@@ -154,3 +153,17 @@ api.wrap = ({didDocument}) => ({
   record: didDocument,
   type: 'CreateWebLedgerRecord',
 });
+
+async function _waitForConsensus({ledgerNode, operation}) {
+  const runWorkers = ledgerNode.consensus._worker._run;
+  let consensus = false;
+  while(!consensus) {
+    await runWorkers(ledgerNode);
+    try {
+      await ledgerNode.records.get({recordId: operation.record.id});
+      consensus = true;
+    } catch(e) {
+      // if a NotFoundError is thrown, runWorkers again
+    }
+  }
+}
