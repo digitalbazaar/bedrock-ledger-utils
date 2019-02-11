@@ -9,15 +9,17 @@ const {config: {constants}} = bedrock;
 const didv1 = require('did-veres-one');
 const jsigs = require('jsonld-signatures')();
 const uuid = require('uuid/v4');
+const {VeresOne} = didv1;
 
 jsigs.use('jsonld', bedrock.jsonld);
-didv1.use('jsonld-signatures', jsigs);
-const v1 = didv1.veres();
+const v1 = new VeresOne({hostname: bedrock.config.server.host, mode: 'dev'});
 
 const api = {};
 module.exports = api;
 
-api.continuityServiceType = 'Continuity2017Peer';
+// FIXME: this service type is provisional
+api.continuityServiceType = 'urn:Continuity2017Peer';
+api.continuityServiceFragment = 'Continuity2017Peer';
 
 api.initializeLedger = async (
   {electorCount = 1, mockData, embeddedServiceCount = 0}) => {
@@ -30,7 +32,7 @@ api.initializeLedger = async (
     const electorDidDocumentFull = await v1.generate();
     electorDidDocumentFull.addService({
       endpoint: mockData.endpoint[i],
-      name: api.continuityServiceType,
+      fragment: api.continuityServiceType,
       type: api.continuityServiceType,
     });
     electors.push(electorDidDocumentFull);

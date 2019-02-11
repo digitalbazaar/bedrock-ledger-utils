@@ -31,8 +31,8 @@ electorDocument.alpha = {
 
 const electorPoolDocument = api.electorPoolDocument = {};
 electorPoolDocument.alpha = {
-  // FIXME: is this correct?
-  '@context': constants.VERES_ONE_CONTEXT_URL,
+  // FIXME: use constant and cached version when available
+  "@context": ['https://w3id.org/did/v0.11', constants.VERES_ONE_CONTEXT_URL],
   // corresponds to ledgerConfiguration.beta
   id: 'urn:uuid:b3275fed-daf4-4c07-b63a-747fa8857609',
 
@@ -63,6 +63,7 @@ ledgerConfiguration.alpha = {
   electorSelectionMethod: {
     type: 'VeresOne',
   },
+  sequence: 0,
 };
 
 ledgerConfiguration.beta = {
@@ -71,9 +72,11 @@ ledgerConfiguration.beta = {
   ledger: 'did:v1:eb8c22dc-bde6-4315-92e2-59bd3f3c7d59',
   consensusMethod: 'Continuity2017',
   electorSelectionMethod: {
-    type: 'VeresOne',
+    type: 'MostRecentParticipants',
+    // FIXME: disabled for v2 testnet
+    // type: 'VeresOne',
     // corresponds to electorPoolDocument.alpha
-    electorPool: 'urn:uuid:b3275fed-daf4-4c07-b63a-747fa8857609',
+    // electorPool: 'urn:uuid:b3275fed-daf4-4c07-b63a-747fa8857609',
   },
   operationValidator: [{
     type: 'VeresOneValidator2017',
@@ -81,5 +84,6 @@ ledgerConfiguration.beta = {
       type: 'ValidatorFilterByType',
       validatorFilterByType: ['CreateWebLedgerRecord', 'UpdateWebLedgerRecord']
     }]
-  }]
+  }],
+  sequence: 0,
 };
