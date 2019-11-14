@@ -2,6 +2,7 @@
   "name": "bedrock-ledger-utils",
   "version": "0.0.1-0",
   "description": "Bedrock ledger utilities.",
+  "license": "SEE LICENSE IN LICENSE.md",  
   "main": "lib",
   "repository": {
     "type": "git",
@@ -20,6 +21,6 @@
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "bedrock": "^1.13.0"
+    "bedrock": "1.x - 3.x"
   }
 }
