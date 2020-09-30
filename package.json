@@ -4,6 +4,9 @@
   "description": "Bedrock ledger utilities.",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "lib",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/digitalbazaar/bedrock-ledger-utils.git"
@@ -24,7 +27,7 @@
     "bedrock": "1.x - 3.x"
   },
   "devDependencies": {
-    "eslint": "^6.7.2",
+    "eslint": "^7.10.0",
     "eslint-config-digitalbazaar": "^2.0.1"
   }
 }

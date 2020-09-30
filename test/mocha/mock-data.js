@@ -32,7 +32,7 @@ electorDocument.alpha = {
 const electorPoolDocument = api.electorPoolDocument = {};
 electorPoolDocument.alpha = {
   // FIXME: use constant and cached version when available
-  "@context": ['https://w3id.org/did/v0.11', constants.VERES_ONE_CONTEXT_URL],
+  '@context': ['https://w3id.org/did/v0.11', constants.VERES_ONE_CONTEXT_URL],
   // corresponds to ledgerConfiguration.beta
   id: 'urn:uuid:b3275fed-daf4-4c07-b63a-747fa8857609',
 

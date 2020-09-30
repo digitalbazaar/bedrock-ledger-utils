@@ -10,7 +10,6 @@ const didv1 = require('did-veres-one');
 const {httpsAgent} = require('bedrock-https-agent');
 const jsigs = require('jsonld-signatures')();
 const uuid = require('uuid/v4');
-const {VeresOne} = didv1;
 
 jsigs.use('jsonld', bedrock.jsonld);
 
@@ -151,7 +150,7 @@ api.initializeLedger = async (
   };
 };
 
-api.sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+api.sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
  * Wrap a DID Document in a Web Ledger Operation.
