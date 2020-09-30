@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/digitalbazaar/bedrock-ledger-utils",
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash.find": "^4.6.0"
   },
   "peerDependencies": {
     "bedrock": "1.x - 3.x"
