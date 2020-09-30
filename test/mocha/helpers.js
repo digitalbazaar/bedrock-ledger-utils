@@ -7,12 +7,18 @@ const bedrock = require('bedrock');
 const brLedgerNode = require('bedrock-ledger-node');
 const {config: {constants}} = bedrock;
 const didv1 = require('did-veres-one');
+const {httpsAgent} = require('bedrock-https-agent');
 const jsigs = require('jsonld-signatures')();
 const uuid = require('uuid/v4');
 const {VeresOne} = didv1;
 
 jsigs.use('jsonld', bedrock.jsonld);
-const v1 = new VeresOne({hostname: bedrock.config.server.host, mode: 'dev'});
+
+const v1 = didv1.driver({
+  hostname: bedrock.config.server.host,
+  httpsAgent,
+  mode: 'dev',
+});
 
 const api = {};
 module.exports = api;
