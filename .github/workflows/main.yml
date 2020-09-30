@@ -11,6 +11,10 @@ jobs:
         image: mongo:4.2
         ports:
           - 27017:27017
+      redis:
+        image: redis:6.0
+        ports:
+          - 6379:6379
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]

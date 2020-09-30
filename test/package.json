@@ -3,7 +3,8 @@
   "version": "0.0.1-0",
   "private": true,
   "scripts": {
-    "test": "redis-cli flushall && node --preserve-symlinks test test",
+    "test": "node --preserve-symlinks test test",
+    "test-local": "redis-cli flushall && node --preserve-symlinks test test",
     "coverage": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-summary npm test",
     "coverage-ci": "cross-env NODE_ENV=test nyc --reporter=lcov npm test",
     "coverage-report": "nyc report"
