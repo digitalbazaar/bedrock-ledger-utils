@@ -4,6 +4,7 @@
 'use strict';
 
 const bedrock = require('bedrock');
+require('bedrock-https-agent');
 require('bedrock-ledger-node');
 require('bedrock-mongodb');
 require('bedrock-ledger-consensus-continuity');
