@@ -5,10 +5,9 @@
 
 const bedrock = require('bedrock');
 const brLedgerNode = require('bedrock-ledger-node');
-const {config: {constants}} = bedrock;
+const {config: {constants}, util: {uuid}} = bedrock;
 const didv1 = require('did-veres-one');
 const {httpsAgent} = require('bedrock-https-agent');
-const uuid = require('uuid/v4');
 
 const v1 = didv1.driver({
   hostname: bedrock.config.server.host,

@@ -36,7 +36,6 @@
     "did-veres-one": "^12.0.0",
     "jsonld-document-loader": "^1.0.0",
     "nyc": "^15.1.0",
-    "uuid": "^3.3.2",
     "veres-one-consensus-continuity-elector-selection": "^1.0.0",
     "veres-one-validator": "^7.0.0"
   },

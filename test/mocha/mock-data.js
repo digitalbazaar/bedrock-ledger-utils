@@ -4,9 +4,8 @@
 'use strict';
 
 const bedrock = require('bedrock');
-const {config} = bedrock;
+const {config, util: {uuid}} = bedrock;
 const {constants} = config;
-const uuid = require('uuid/v4');
 
 const api = {};
 module.exports = api;
